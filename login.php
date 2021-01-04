@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -24,23 +23,15 @@
                     <a href="ulkokasvit.html" target="_self">Ulkokasvit</a>
                     <a href="tyokalut.html" target="_self">Työkalut</a>
                     <a href="kasvienhoito.html" target="_self">Kasvien hoito</a>
-
                 </div>
             </div>
             <a href="myymalat.html" target="_self">Mymäälät</a>
             <a href="tietoa.html" target="_self">Tietoa meistä</a>
             <a href="otayht.html" target="_self">Ota yhteyttä</a>
             <a href="register.php" target="_self" class="active">Kirjautuminen</a>
-
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
-
-
-
-
         <?php
-
-
         $link = mysqli_connect("127.0.0.1", "root", "", "neilikka");
         if (!$link) {
             echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -51,49 +42,37 @@
         // echo "Host information: " . mysqli_get_host_info($link) . PHP_EOL . "<br>";
         // Initialize the session
         session_start();
-
         // Check if the user is already logged in, if yes then redirect him to welcome page
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             header("location: welcome.php");
             exit;
         }
-
-        // Include config file
-        // require_once "register.php";
-
         // Define variables and initialize with empty values
         $username = $password = "";
         $username_err = $password_err = "";
-
         // Processing form data when form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
             // Check if username is empty
             if (empty(trim($_POST["username"]))) {
                 $username_err = "Please enter username.";
             } else {
                 $username = trim($_POST["username"]);
             }
-
             // Check if password is empty
             if (empty(trim($_POST["password"]))) {
                 $password_err = "Please enter your password.";
             } else {
                 $password = trim($_POST["password"]);
             }
-
             // Validate credentials
             if (empty($username_err) && empty($password_err)) {
                 // Prepare a select statement
                 $sql = "SELECT id, username, password FROM users WHERE username = ?";
-
                 if ($stmt = mysqli_prepare($link, $sql)) {
                     // Bind variables to the prepared statement as parameters
                     mysqli_stmt_bind_param($stmt, "s", $param_username);
-
                     // Set parameters
                     $param_username = $username;
-
                     // Attempt to execute the prepared statement
                     if (mysqli_stmt_execute($stmt)) {
                         // Store result
@@ -107,12 +86,10 @@
                                 if (password_verify($password, $hashed_password)) {
                                     // Password is correct, so start a new session
                                     session_start();
-
                                     // Store data in session variables
                                     $_SESSION["loggedin"] = true;
                                     $_SESSION["id"] = $id;
                                     $_SESSION["username"] = $username;
-
                                     // Redirect user to welcome page
                                     header("location: welcome.php");
                                 } else {
@@ -127,41 +104,17 @@
                     } else {
                         echo "Oops! Something went wrong. Please try again later.";
                     }
-
                     // Close statement
                     mysqli_stmt_close($stmt);
                 }
             }
-
             // Close connection
             mysqli_close($link);
         }
         ?>
-
-        <!-- <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <meta charset="UTF-8">
-            <title>Login</title> -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-            <style type="text/css">
-                body {
-                    font: 14px sans-serif;
-                }
-
-                .wrapper {
-                    width: 350px;
-                    padding: 20px;
-                }
-            </style> -->
-        <!-- </head> -->
-
-        <!-- <body> -->
         <div class="wrapper">
             <h1>Login</h1>
             <fieldset>
-
                 <p>Please fill in your credentials to login.</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">

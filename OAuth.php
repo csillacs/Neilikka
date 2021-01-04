@@ -41,14 +41,12 @@ class OAuth
      * @var AbstractProvider
      */
     protected $provider;
-
     /**
      * The current OAuth access token.
      *
      * @var AccessToken
      */
     protected $oauthToken;
-
     /**
      * The user's email address, usually used as the login ID
      * and also the from address when sending email.
@@ -56,28 +54,24 @@ class OAuth
      * @var string
      */
     protected $oauthUserEmail = '';
-
     /**
      * The client secret, generated in the app definition of the service you're connecting to.
      *
      * @var string
      */
     protected $oauthClientSecret = '';
-
     /**
      * The client ID, generated in the app definition of the service you're connecting to.
      *
      * @var string
      */
     protected $oauthClientId = '';
-
     /**
      * The refresh token, used to obtain new AccessTokens.
      *
      * @var string
      */
     protected $oauthRefreshToken = '';
-
     /**
      * OAuth constructor.
      *
@@ -92,7 +86,6 @@ class OAuth
         $this->oauthClientId = $options['clientId'];
         $this->oauthRefreshToken = $options['refreshToken'];
     }
-
     /**
      * Get a new RefreshToken.
      *
@@ -102,7 +95,6 @@ class OAuth
     {
         return new RefreshToken();
     }
-
     /**
      * Get a new AccessToken.
      *
@@ -115,7 +107,6 @@ class OAuth
             ['refresh_token' => $this->oauthRefreshToken]
         );
     }
-
     /**
      * Generate a base64-encoded OAuth token.
      *
@@ -127,7 +118,6 @@ class OAuth
         if (null === $this->oauthToken || $this->oauthToken->hasExpired()) {
             $this->oauthToken = $this->getToken();
         }
-
         return base64_encode(
             'user=' .
                 $this->oauthUserEmail .

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -26,38 +25,27 @@
                     <a href="ulkokasvit.html" target="_self">Ulkokasvit</a>
                     <a href="tyokalut.html" target="_self">Työkalut</a>
                     <a href="kasvienhoito.html" target="_self">Kasvien hoito</a>
-
                 </div>
             </div>
             <a href="myymalat.html" target="_self">Mymäälät</a>
             <a href="tietoa.html" target="_self">Tietoa meistä</a>
             <a href="otayht.html" target="_self" class="active">Ota yhteyttä</a>
             <a href="register.php" target="_self">Kirjautuminen</a>
-
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
-
         <div class="content">
             <h1> Voit ottaa meihin yhteyttä</h1>
             <li> puhelimitse yksittäisiin <a href="myymalat.html" target="_self">myymälöihin</a></li>
             <li> sähköpostitse: asiakaspalvelu@puutarhaliikeneilikka.fi </li>
             <li> alla olevalla lomakkeella </li>
         </div>
-
-
-
-
         <form onsubmit="pr(event)" id="myForm">
             <fieldset>
                 <h1>Lähetä meille sähköposti</h1>
                 <label for="name">Nimi:</label>
-                <input type="text" id="name" name="name" maxlength="50" onsubmit="return validateForm()" required>
-                <br>
-
+                <input type="text" id="name" name="name" maxlength="50" onsubmit="return validateForm()" required><br>
                 <label for="email">Sähköposti:</label>
                 <input type="email" id="email" name="email" maxlength="50" required> <br>
-
-
                 <label for="subject">Aihe:</label>
                 <select id="subject" name="subject">
                     <option value="kysymys">Kysymys toutteista</option>
@@ -65,25 +53,18 @@
                     <option value="yteydenottopyynto">Yhteydenottopyyntö</option>
                     <option value="muu">Muu</option>
                 </select> <br>
-
                 <label for="body">Viesti:</label> <br>
                 <textarea id="body" name="body" rows="4" cols="50" maxlength="255" required>
               </textarea>
                 <br>
                 <button type="button" value="Lähetä" onclick="sendEmail()" href="/">Lähetä</button>
-
                 <br>
             </fieldset>
         </form>
-
     </div>
-
-
-
     <footer>
         @Puutarhaliike Neilikka Finland Oy 2020
     </footer>
-
 </body>
 
 </html>
